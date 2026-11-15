@@ -28,6 +28,6 @@ The root also holds two standalone prototypes that are *not* part of the build: 
 ## Still placeholders
 
 - Instagram/Pinterest footer links point to the generic `instagram.com` / `pinterest.com`.
-- `src/config.ts` holds `TYPEFORM_ID`, `GA_ID` and `CONTACT_EMAIL`, all empty for now. The contact section embeds Typeform (`data-tf-live`) once `TYPEFORM_ID` is set; until then it shows a "not connected" note. GA4 and the cookie banner (`src/components/CookieBanner.astro`) are rendered only when `GA_ID` is set, and GA loads only after the visitor accepts. `src/pages/privacy.astro` is linked from the footer.
-- Custom domain (Spaceship) is not set up yet: needs `public/CNAME` and `SITE`/`BASE: /` in the workflow.
+- `src/config.ts` holds `TYPEFORM_ID` and `GA_ID` (both set) and `CONTACT_EMAIL` (empty). The contact section embeds Typeform (`data-tf-live`) once `TYPEFORM_ID` is set; until then it shows a "not connected" note. GA4 and the cookie banner (`src/components/CookieBanner.astro`) are rendered only when `GA_ID` is set, and GA loads only after the visitor accepts. `src/pages/privacy.astro` is linked from the footer.
+- Custom domain `chloelloydstudio.com` (registered at Spaceship, DNS pointed at GitHub Pages) is set in `public/CNAME` and in the workflow (`SITE=https://chloelloydstudio.com`, `BASE=/`). Local builds fall back to `https://example.github.io`, so canonical URLs only look right in CI builds.
 - The About portrait is an SVG drawing, not a photo. Couple names/dates in the sample content are fake.
