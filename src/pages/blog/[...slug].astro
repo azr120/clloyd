@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const og = post.data.cover ? (await getImage({ src: post.data.cover, width: 1200 })).src : undefined;
+---
+
+<Base title={`${post.data.title} — Chloe Lloyd Studio`} description={post.data.description} image={og} type="article">
+  <article class="post">
+    <header class="wrap post-head">
+      <a class="back" href={`${home}blog/`}>← All posts</a>
+      <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+      <h1>{post.data.title}</h1>
+      <p class="post-desc">{post.data.description}</p>
+    </header>
+    {post.data.cover && (
+      <div class="post-cover">
+        <Image src={post.data.cover} alt={post.data.coverAlt} widths={[736, 864]} sizes="(max-width: 860px) 100vw, 720px" loading="eager" />
+      </div>
+    )}
+    <div class="wrap prose">
+      <Content />
+    </div>
+    <div class="wrap post-foot">
+      <a class="btn" href={`${home}#contact`}>Begin an inquiry</a>
+      <a class="btn ghost" href={`${home}blog/`}>More posts</a>
+    </div>
+  </article>
+</Base>

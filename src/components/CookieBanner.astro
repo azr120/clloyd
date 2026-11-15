@@ -1,0 +1,38 @@
+---
+import { GA_ID } from '../config';
+const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+{GA_ID && (
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie preferences" hidden>
+    <p>I use Google Analytics cookies to see which pages are useful. Nothing is tracked unless you accept. <a href={`${home}privacy/`}>Privacy</a></p>
+    <div class="cookie-actions">
+      <button type="button" class="btn" id="cookie-accept">Accept</button>
+      <button type="button" class="btn ghost" id="cookie-decline">Decline</button>
+    </div>
+  </div>
+  <script is:inline define:vars={{ GA_ID }}>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.getElementById('cookie-banner');
+      function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+      function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+      function loadGA() {
+        if (window.gtag) return;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', GA_ID);
+      }
+      var v = stored();
+      if (v === 'granted') loadGA();
+      else if (v !== 'denied') banner.hidden = false;
+      document.getElementById('cookie-accept').addEventListener('click', function () { store('granted'); banner.hidden = true; loadGA(); });
+      document.getElementById('cookie-decline').addEventListener('click', function () { store('denied'); banner.hidden = true; });
+    })();
+  </script>
+)}

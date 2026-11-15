@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { GA_ID, CONTACT_EMAIL } from '../config';
+---
+
+<Base title="Privacy — Chloe Lloyd Studio" description="How this website handles your data.">
+  <section class="blog-hero">
+    <div class="wrap">
+      <p class="eyebrow">Privacy</p>
+      <h1>Your <em>privacy</em></h1>
+    </div>
+  </section>
+  <div class="wrap prose">
+    <p>This is a small portfolio site. It collects as little as possible.</p>
+    <h2>Inquiries</h2>
+    <p>When you send an inquiry, the form is provided by Typeform, which stores your answers and sends them to the studio. They are used only to reply to you and are not shared or sold. Typeform's own privacy policy applies to the form itself.</p>
+    {GA_ID && (
+      <>
+        <h2>Analytics</h2>
+        <p>If you choose "Accept" on the cookie banner, Google Analytics records anonymous information about how the site is used (pages visited, rough location, device type). If you choose "Decline", nothing is loaded. You can change your mind by clearing this site's data in your browser.</p>
+      </>
+    )}
+    <h2>Contact</h2>
+    <p>{CONTACT_EMAIL ? <>Questions about your data? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</> : 'Questions about your data? Use the inquiry form on the home page.'}</p>
+  </div>
+</Base>

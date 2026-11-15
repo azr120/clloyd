@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chloe Lloyd Studio — Wedding Stationery & Illustration</title>
+<meta name="description" content="Hand-painted wedding stationery and illustration, made to feel like you. Custom invitation suites from a studio in Greece.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Mediterranean palette: warm paper, terracotta, olive, sea glass */
+    --paper:#f8f2e7;
+    --paper-deep:#efe6d3;
+    --terracotta:#c4572f;
+    --terracotta-deep:#a2431f;
+    --apricot:#f1cdb0;
+    --olive:#5d6034;
+    --olive-deep:#444625;
+    --sage:#c9d1b4;
+    --sea:#8fb5ab;
+    --sea-deep:#4f7f77;
+    --ink:#262619;
+    --ink-soft:#55543f;
+    --rule:rgba(38,38,25,0.16);
+    --rule-light:rgba(248,242,231,0.28);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Karla', system-ui, sans-serif;
+  }
+  html{ box-sizing:border-box; }
+  *,*::before,*::after{ box-sizing:inherit; }
+  @media (prefers-reduced-motion: no-preference){ html{ scroll-behavior:smooth; } }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3{ font-family:var(--serif); font-weight:400; margin:0; letter-spacing:-0.01em; line-height:1.1; }
+  h2 em, h1 em{ font-style:italic; font-weight:300; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  img,svg{ max-width:100%; display:block; }
+  section[id]{ scroll-margin-top:4.5rem; }
+  :focus-visible{ outline:2px solid var(--terracotta); outline-offset:3px; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 6vw; }
+  .section{ padding:7rem 0; position:relative; }
+  @media (max-width:720px){ .section{ padding:4.5rem 0; } }
+
+  .eyebrow{
+    display:flex; align-items:center; gap:0.9rem;
+    font-size:0.74rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--terracotta);
+    margin-bottom:1.6rem;
+  }
+  .eyebrow::before{ content:""; width:2.2rem; height:1px; background:currentColor; }
+  .on-dark .eyebrow{ color:var(--apricot); }
+
+  .btn{
+    display:inline-block;
+    background:var(--terracotta); color:var(--paper);
+    padding:0.95rem 2rem;
+    border-radius:999px; border:none;
+    font-family:var(--sans); font-weight:700; font-size:0.92rem; letter-spacing:0.04em;
+    text-decoration:none; cursor:pointer;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .btn:hover{ background:var(--terracotta-deep); transform:translateY(-1px); }
+  .btn.ghost{ background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- NAV ---------- */
+  .site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(248,242,231,0.92);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:1rem 6vw; max-width:1180px; margin:0 auto; position:relative; }
+  .nav-brand{ font-family:var(--serif); font-size:1.2rem; text-decoration:none; letter-spacing:-0.005em; }
+  .nav-brand span{ font-style:italic; font-weight:300; color:var(--terracotta); }
+  .nav-links{ display:flex; align-items:center; gap:2rem; list-style:none; margin:0; padding:0; }
+  .nav-links a{ text-decoration:none; font-size:0.86rem; font-weight:600; letter-spacing:0.05em; color:var(--ink-soft); transition:color 0.2s; }
+  .nav-links a:hover{ color:var(--terracotta); }
+  .nav-links a.nav-cta{ background:var(--ink); color:var(--paper); padding:0.55rem 1.3rem; border-radius:999px; }
+  .nav-links a.nav-cta:hover{ background:var(--terracotta); color:var(--paper); }
+  .nav-toggle{ position:absolute; opacity:0; pointer-events:none; width:1px; height:1px; }
+  .burger{ display:none; cursor:pointer; padding:0.5rem; }
+  .burger span, .burger span::before, .burger span::after{ display:block; width:22px; height:2px; background:var(--ink); position:relative; content:""; }
+  .burger span::before{ position:absolute; top:-7px; }
+  .burger span::after{ position:absolute; top:7px; }
+  @media (max-width:860px){
+    .burger{ display:block; }
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:1.2rem;
+      background:var(--paper); padding:1.6rem 6vw 2rem;
+      border-bottom:1px solid var(--rule);
+    }
+    .nav-toggle:checked ~ .nav-links{ display:flex; }
+    .nav-toggle:focus-visible ~ .burger{ outline:2px solid var(--terracotta); outline-offset:3px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:0; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; min-height:min(82vh, 760px); }
+  .hero-copy{ padding:5rem 5vw 5rem 6vw; align-self:center; }
+  .hero h1{ font-size:clamp(3rem, 7.5vw, 6rem); line-height:0.98; letter-spacing:-0.025em; }
+  .hero h1 em{ color:var(--terracotta); }
+  .hero .tagline{ margin-top:1.8rem; font-size:0.78rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive); }
+  .hero .intro{ margin-top:1.4rem; max-width:40ch; color:var(--ink-soft); font-size:1.08rem; }
+  .hero-actions{ margin-top:2.4rem; display:flex; gap:0.9rem; flex-wrap:wrap; }
+  .hero-visual{ position:relative; min-height:360px; }
+  .hero-visual img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 35%; }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; min-height:0; }
+    .hero-copy{ padding:3rem 6vw 3.5rem; }
+    .hero-visual{ order:-1; aspect-ratio:4/5; max-height:70vh; min-height:0; }
+  }
+
+  /* ---------- STATIONERY ---------- */
+  .stationery{ background:var(--terracotta); color:var(--paper); }
+  .stationery .grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:5rem; align-items:center; }
+  .stationery h2{ font-size:clamp(2rem, 4vw, 3.1rem); max-width:16ch; }
+  .stationery p.body{ margin-top:1.8rem; max-width:44ch; color:rgba(248,242,231,0.88); font-size:1.05rem; }
+  .invite-stage{ aspect-ratio:4/5; width:100%; max-width:460px; justify-self:center; border-radius:999px 999px 6px 6px; overflow:hidden; box-shadow:0 30px 60px -25px rgba(0,0,0,0.5); }
+  .invite-stage img{ width:100%; height:100%; object-fit:cover; }
+  @media (max-width:860px){ .stationery .grid{ grid-template-columns:1fr; gap:3rem; } }
+
+  /* ---------- COMMISSIONS ---------- */
+  .commissions .head{ display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:end; }
+  .commissions h2{ font-size:clamp(2rem, 4vw, 3.1rem); }
+  .commissions .lede{ color:var(--ink-soft); font-size:1.08rem; max-width:44ch; }
+  .commissions .lede strong{ color:var(--ink); font-weight:600; }
+  .comm-grid{ margin-top:4rem; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .arch{
+    background:var(--paper-deep);
+    border-radius:999px 999px 6px 6px;
+    aspect-ratio:4/5; overflow:hidden;
+  }
+  .arch img{ width:100%; height:100%; object-fit:cover; }
+  .comm-label{ margin-top:1.1rem; font-family:var(--serif); font-size:1.15rem; display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid var(--rule); padding-top:0.9rem; }
+  .comm-label small{ font-family:var(--sans); font-size:0.72rem; letter-spacing:0.16em; color:var(--ink-soft); }
+  @media (max-width:860px){ .commissions .head{ grid-template-columns:1fr; gap:1.5rem; } .comm-grid{ grid-template-columns:1fr; max-width:380px; margin-left:auto; margin-right:auto; } }
+
+  /* ---------- PROCESS ---------- */
+  .how{ background:var(--olive); color:var(--paper); }
+  .how h2{ font-size:clamp(2rem, 4vw, 3.1rem); max-width:18ch; }
+  .how .sub{ margin-top:1.2rem; color:rgba(248,242,231,0.75); max-width:48ch; }
+  .steps{ margin-top:4rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0; border-top:1px solid var(--rule-light); }
+  .step{ padding:1.8rem 1.4rem 0.4rem 0; }
+  .step + .step{ padding-left:1.4rem; border-left:1px solid var(--rule-light); }
+  .step .num{ font-family:var(--serif); font-style:italic; font-weight:300; font-size:2.4rem; color:var(--apricot); display:block; line-height:1; }
+  .step .step-title{ display:block; margin-top:1rem; font-weight:700; font-size:1rem; letter-spacing:0.02em; }
+  .step p{ margin-top:0.6rem; font-size:0.92rem; color:rgba(248,242,231,0.72); }
+  @media (max-width:980px){
+    .steps{ grid-template-columns:repeat(2,1fr); }
+    .step, .step + .step{ padding:1.6rem 1rem 1rem 0; border-left:none; border-bottom:1px solid var(--rule-light); }
+  }
+  @media (max-width:560px){ .steps{ grid-template-columns:1fr; } }
+
+  /* ---------- ABOUT ---------- */
+  .about .grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:5rem; align-items:center; }
+  .portrait{ background:var(--sea); border-radius:999px 999px 6px 6px; aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; padding:3rem; max-width:420px; }
+  .portrait svg{ width:100%; height:100%; }
+  .portrait img{ width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+  .about blockquote{ font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.25; margin:0 0 2rem; max-width:24ch; color:var(--olive-deep); }
+  .bio p{ margin-top:1rem; max-width:50ch; color:var(--ink-soft); }
+  .bio p:last-child{ color:var(--ink); font-family:var(--serif); font-size:1.2rem; margin-top:1.6rem; }
+  @media (max-width:860px){ .about .grid{ grid-template-columns:1fr; gap:3rem; } .portrait{ margin:0 auto; max-width:320px; } }
+
+  /* ---------- WORKS ---------- */
+  .works{ background:var(--paper-deep); }
+  .works h2{ font-size:clamp(2rem, 4vw, 3.1rem); }
+  .works-grid{ margin-top:3.5rem; display:flex; flex-wrap:wrap; justify-content:center; gap:1.6rem; }
+  .work-tile{ flex:0 0 calc((100% - 3.2rem) / 3); background:var(--paper); border-radius:4px; aspect-ratio:2/3; overflow:hidden; transition:transform 0.3s ease, box-shadow 0.3s ease; }
+  .work-tile:hover{ transform:translateY(-4px); box-shadow:0 18px 30px -18px rgba(38,38,25,0.35); }
+  .work-tile img{ width:100%; height:100%; object-fit:cover; }
+  @media (max-width:980px){ .work-tile{ flex-basis:calc((100% - 1.6rem) / 2); } }
+  @media (max-width:560px){ .work-tile{ flex-basis:100%; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--ink); color:var(--paper); }
+  .contact h2{ font-size:clamp(2.4rem, 5.5vw, 4rem); }
+  .contact h2 em{ color:var(--apricot); }
+  .contact-grid{ margin-top:3.5rem; display:grid; grid-template-columns:0.7fr 1.3fr; gap:5rem; }
+  .contact-note{ color:rgba(248,242,231,0.72); max-width:32ch; }
+  .contact-note strong{ display:block; font-family:var(--serif); font-weight:400; font-size:1.3rem; color:var(--paper); margin-bottom:0.8rem; }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; gap:2.5rem; } }
+  form{ display:flex; flex-direction:column; gap:1.5rem; }
+  .field{ display:flex; flex-direction:column; gap:0.4rem; }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  @media (max-width:560px){ .field-row{ grid-template-columns:1fr; } }
+  label, legend{ font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(248,242,231,0.6); }
+  input, textarea, select{
+    background:transparent; border:none;
+    border-bottom:1px solid rgba(248,242,231,0.3);
+    color:var(--paper);
+    font-family:var(--sans); font-size:1.02rem;
+    padding:0.55rem 0.1rem; border-radius:0;
+    transition:border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus{ outline:none; border-bottom-color:var(--apricot); }
+  input:focus-visible, textarea:focus-visible, select:focus-visible{ outline:2px solid var(--apricot); outline-offset:3px; }
+  input::placeholder, textarea::placeholder{ color:rgba(248,242,231,0.32); }
+  select option{ color:var(--ink); }
+  textarea{ resize:vertical; min-height:5.5rem; }
+  fieldset.field{ border:none; margin:0; padding:0; min-width:0; }
+  fieldset legend{ padding:0; margin-bottom:0.8rem; }
+  .checks{ display:grid; grid-template-columns:1fr 1fr; gap:0.7rem 1.4rem; }
+  @media (max-width:560px){ .checks{ grid-template-columns:1fr; } }
+  .checks label{ display:flex; align-items:center; gap:0.6rem; font-size:0.95rem; font-weight:400; letter-spacing:0; text-transform:none; color:var(--paper); cursor:pointer; }
+  .checks input{ width:1.05rem; height:1.05rem; padding:0; accent-color:var(--terracotta); flex:none; }
+  form .btn{ align-self:flex-start; margin-top:0.6rem; background:var(--apricot); color:var(--ink); }
+  form .btn:hover{ background:var(--paper); }
+  .form-status{ font-size:0.9rem; color:rgba(248,242,231,0.75); min-height:1.3em; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:rgba(248,242,231,0.55); border-top:1px solid var(--rule-light); padding:2.2rem 0; font-size:0.86rem; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.2rem; }
+  footer a{ color:rgba(248,242,231,0.8); text-decoration:none; }
+  footer a:hover{ color:var(--apricot); }
+  .footer-right{ display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap; }
+  .socials{ display:flex; gap:1.1rem; }
+  .socials a{ display:inline-flex; }
+  .socials svg{ width:22px; height:22px; fill:currentColor; }
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ animation:fadeUp 0.8s ease both; }
+    .reveal.d2{ animation-delay:0.12s; }
+    .reveal.d3{ animation-delay:0.24s; }
+  }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Chloe Lloyd <span>Studio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span></label>
+    <ul class="nav-links">
+      <li><a href="#stationery">Stationery</a></li>
+      <li><a href="#commissions">Commissions</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a class="nav-cta" href="#contact">Get in touch</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 class="reveal">Chloe Lloyd <em>Studio</em></h1>
+      <p class="tagline reveal d2">Wedding stationery &amp; illustration</p>
+      <p class="intro reveal d2">Hand-painted invitation suites, made to feel like you — and nobody else.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn" href="#contact">Begin an inquiry</a>
+        <a class="btn ghost" href="#works">See the work</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <img src="chloe%20images/Mallorca%20wedding%20flatlay.jpeg" alt="Mallorca save the date, invitation and menu with a wax seal" width="843" height="1264">
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING STATIONERY -->
+<section class="section stationery on-dark" id="stationery">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Wedding stationery</p>
+      <h2>Because <em>your</em> wedding stationery should feel like you — not like everyone else's.</h2>
+      <p class="body">Every commission begins with a brush, a blank page, and the things that make your story yours — a favourite flower, a special place, a memory. I turn those details into original artwork, then carry them across your entire suite.</p>
+    </div>
+    <div class="invite-stage">
+      <img src="chloe%20images/Essex%20suite.jpeg" alt="Hand-painted wedding suite with save the date, invitation and menu in pink and sage" width="864" height="1210" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSIONS -->
+<section class="section commissions" id="commissions">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">Commissions</p>
+        <h2>Painted for the things <em>worth remembering</em></h2>
+      </div>
+      <p class="lede"><strong>Hand-painted artwork</strong> for the things worth remembering — special celebrations, favourite pieces, and ideas that deserve to exist on paper.</p>
+    </div>
+    <div class="comm-grid">
+      <div class="comm-card">
+        <div class="arch">
+          <img src="chloe%20images/Oyster%20menu%20flatlay.jpeg" alt="Hand-painted seafood menu card on a plate with a terracotta napkin" loading="lazy">
+        </div>
+        <p class="comm-label">Place setting menus <small>01</small></p>
+      </div>
+      <div class="comm-card">
+        <div class="arch">
+          <img src="chloe%20images/Hand-painted%20seating%20plan%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Hand-painted seating plan with floral border on an easel" loading="lazy">
+        </div>
+        <p class="comm-label">Illustrated table plans <small>02</small></p>
+      </div>
+      <div class="comm-card">
+        <div class="arch">
+          <img src="chloe%20images/Hand-Painted%20Custom%20Menu%20for%20Destination%20Wedding%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Hand-painted signature cocktails sign by the sea" loading="lazy">
+        </div>
+        <p class="comm-label">Signage &amp; drinks menus <small>03</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section how on-dark" id="process">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Original artwork, <em>ready to print.</em></h2>
+    <p class="sub">From first sketch to print-ready files, your suite takes around 4–6 weeks.</p>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><span class="step-title">Inquire</span><p>Share your date, your colours, and anything that feels like you — a short call or a written brief, whichever works best.</p></div>
+      <div class="step"><span class="num">02</span><span class="step-title">Concept &amp; palette</span><p>I paint a small set of studies in your palette, so we can agree on the mood before a single word is set.</p></div>
+      <div class="step"><span class="num">03</span><span class="step-title">Hand-painted proof</span><p>Your suite is painted in full, photographed, and sent over as a digital proof for your first look.</p></div>
+      <div class="step"><span class="num">04</span><span class="step-title">Revisions</span><p>Two rounds are included — from wording and colour to composition — until everything feels just right.</p></div>
+      <div class="step"><span class="num">05</span><span class="step-title">Delivery</span><p>Your final print-ready files are sent along with a detailed printing guide, ready for your chosen printer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="wrap grid">
+    <div class="portrait" aria-hidden="true">
+      <svg viewBox="0 0 200 240">
+        <g stroke="#f8f2e7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 40 q10 -18 30 -14 q18 4 16 22 q14 4 10 20 q10 8 2 22 l-58 6 q-10 -20 0 -40 q-4 -10 0 -16z"/>
+          <path d="M60 90 l-15 70 h100 l-15 -70"/>
+          <rect x="20" y="150" width="60" height="70" rx="2"/>
+          <path d="M50 150 v-30 l40 -10"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">About</p>
+      <blockquote>"The best stationery doesn't just tell your guests where to be. It tells them something about you."</blockquote>
+      <div class="bio">
+        <p>I'm Chloe, an illustrator and designer creating custom invitation suites for celebrations worldwide. I blend hand-painted illustration with a modern, editorial eye to make pieces that feel original, rich, and deeply personal.</p>
+        <p>Working from my studio in Greece, my aesthetic is shaped by Mediterranean light, the seasons, and classical forms — bringing an effortless sense of luxury to every project.</p>
+        <p>Ready to create something memorable together?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORKS -->
+<section class="section works" id="works">
+  <div class="wrap">
+    <p class="eyebrow">Selected works</p>
+    <h2>A few favourite <em>suites</em></h2>
+    <div class="works-grid">
+      <div class="work-tile"><img src="chloe%20images/Athens%20Greek%20Destination%20Wedding%20Invitation%20Design%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Blue hand-drawn Athens wedding suite with Acropolis and Greek gods" loading="lazy"></div>
+      <div class="work-tile"><img src="chloe%20images/Amalfi%20Coast%20Destination%20Wedding%20Invitation%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Hand-painted Amalfi Coast invitation with lemons and Positano" loading="lazy"></div>
+      <div class="work-tile"><img src="chloe%20images/Greek%20Destination%20Wedding%20Invitation%20Design%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Hand-painted Greek wedding invitation with columns on a green and lilac check" loading="lazy"></div>
+      <div class="work-tile"><img src="chloe%20images/Pomegranate%20menu%20flatlay.jpeg" alt="Pink menu card bordered with hand-painted pomegranates and pears" loading="lazy"></div>
+      <div class="work-tile"><img src="chloe%20images/Hand-Painted%20Custom%20Seting%20Plan%20for%20Beach%20Wedding%20by%20Chloe%20Lloyd%20Studio.jpeg" alt="Hand-painted beach wedding seating plan with starfish and waves" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GET IN TOUCH -->
+<section class="section contact on-dark" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Begin an inquiry</p>
+    <h2>Get in <em>touch</em></h2>
+    <div class="contact-grid">
+      <p class="contact-note"><strong>Let's make something yours.</strong>Tell me a little about your wedding, and I'll reply within a few days with availability and next steps.</p>
+      <form id="inquiry-form">
+        <div class="field">
+          <label for="name">Your name(s)</label>
+          <input id="name" name="name" type="text" placeholder="Sema &amp; Callum" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+44 …">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="date">Wedding date</label>
+            <input id="date" name="date" type="text" placeholder="23 August 2025">
+          </div>
+          <div class="field">
+            <label for="guests">Estimated guest count</label>
+            <input id="guests" name="guests" type="text" inputmode="numeric" placeholder="80">
+          </div>
+        </div>
+        <div class="field">
+          <label for="venue">Venue &amp; location</label>
+          <input id="venue" name="venue" type="text" placeholder="Pousada Mosteiro do Crato, Portugal">
+        </div>
+        <fieldset class="field">
+          <legend>What are you looking for?</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="pieces" value="Full invitation suite"> Full invitation suite</label>
+            <label><input type="checkbox" name="pieces" value="Save the dates"> Save the dates</label>
+            <label><input type="checkbox" name="pieces" value="Place setting menus"> Place setting menus</label>
+            <label><input type="checkbox" name="pieces" value="Illustrated table plan"> Illustrated table plan</label>
+            <label><input type="checkbox" name="pieces" value="Welcome signage"> Welcome signage</label>
+            <label><input type="checkbox" name="pieces" value="Something else"> Something else</label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="palette">Colour palette &amp; mood</label>
+          <input id="palette" name="palette" type="text" placeholder="Terracotta, olive, sea-glass green…">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="budget">Budget range</label>
+            <select id="budget" name="budget">
+              <option value="">Select…</option>
+              <option>Under £1,000</option>
+              <option>£1,000 – £2,000</option>
+              <option>£2,000 – £4,000</option>
+              <option>£4,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="source">How did you find me?</label>
+            <select id="source" name="source">
+              <option value="">Select…</option>
+              <option>Instagram</option>
+              <option>Pinterest</option>
+              <option>Recommendation</option>
+              <option>Search</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Tell me about your day</label>
+          <textarea id="message" name="message" placeholder="Colours, venue, the little details that feel like you…"></textarea>
+        </div>
+        <button class="btn" type="submit">Send inquiry</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© Chloe Lloyd Studio</span>
+    <div class="footer-right">
+      <a href="#contact">Begin an inquiry</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><circle cx="17" cy="7" r="1.1"/><path d="M16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm3.8 14.5a3.8 3.8 0 0 1-3.8 3.8h-9a3.8 3.8 0 0 1-3.8-3.8v-9a3.8 3.8 0 0 1 3.8-3.8h9a3.8 3.8 0 0 1 3.8 3.8z"/></svg>
+        </a>
+        <a href="https://www.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.64 19.31c-.09-.82-.17-2.08.04-2.98l1.2-5.1s-.3-.61-.3-1.51c0-1.41.82-2.47 1.84-2.47.87 0 1.29.65 1.29 1.43 0 .87-.55 2.18-.84 3.39-.24 1.01.51 1.84 1.5 1.84 1.8 0 3.19-1.9 3.19-4.64 0-2.43-1.75-4.12-4.24-4.12-2.89 0-4.58 2.16-4.58 4.4 0 .87.33 1.8.75 2.31a.3.3 0 0 1 .07.29l-.28 1.15c-.04.18-.15.22-.34.13-1.26-.59-2.05-2.43-2.05-3.91 0-3.18 2.31-6.1 6.67-6.1 3.5 0 6.22 2.5 6.22 5.83 0 3.48-2.19 6.28-5.24 6.28-1.02 0-1.98-.53-2.31-1.16l-.63 2.4c-.23.88-.84 1.98-1.25 2.65A10 10 0 1 0 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('inquiry-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.textContent = "Thanks — your inquiry is ready. (Connect this form to your email to receive it.)";
+  });
+  // close the mobile menu after choosing a link
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('nav-toggle').checked = false; });
+  });
+</script>
+
+</body>
+</html>

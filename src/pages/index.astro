@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { TYPEFORM_ID } from '../config';
+import amalfi from '../assets/images/amalfi-invitation.jpeg';
+import athens from '../assets/images/athens-suite.jpeg';
+import essex from '../assets/images/essex-suite.jpeg';
+import greek from '../assets/images/greek-invitation.jpeg';
+import cocktail from '../assets/images/cocktail-sign.jpeg';
+import beach from '../assets/images/beach-seating-plan.jpeg';
+import seating from '../assets/images/seating-plan.jpeg';
+import mallorca from '../assets/images/mallorca-suite.jpeg';
+import oyster from '../assets/images/oyster-menu.jpeg';
+import pomegranate from '../assets/images/pomegranate-menu.jpeg';
+---
+
+<Base title="Chloe Lloyd Studio — Wedding Stationery & Illustration" description="Hand-painted wedding stationery and illustration, made to feel like you. Custom invitation suites from a studio in Greece.">
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 class="reveal">Chloe Lloyd <em>Studio</em></h1>
+      <p class="tagline reveal d2">Wedding stationery &amp; illustration</p>
+      <p class="intro reveal d2">Hand-painted invitation suites, made to feel like you — and nobody else.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn" href="#contact">Begin an inquiry</a>
+        <a class="btn ghost" href="#works">See the work</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <Image src={mallorca} alt="Mallorca save the date, invitation and menu with a wax seal" widths={[600, 843]} sizes="(max-width: 860px) 100vw, 50vw" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING STATIONERY -->
+<section class="section stationery on-dark" id="stationery">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Wedding stationery</p>
+      <h2>Because <em>your</em> wedding stationery should feel like you — not like everyone else's.</h2>
+      <p class="body">Every commission begins with a brush, a blank page, and the things that make your story yours — a favourite flower, a special place, a memory. I turn those details into original artwork, then carry them across your entire suite.</p>
+    </div>
+    <div class="invite-stage">
+      <Image src={essex} alt="Hand-painted wedding suite with save the date, invitation and menu in pink and sage" widths={[480, 736]} sizes="(max-width: 860px) 90vw, 460px" />
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSIONS -->
+<section class="section commissions" id="commissions">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">Commissions</p>
+        <h2>Painted for the things <em>worth remembering</em></h2>
+      </div>
+      <p class="lede"><strong>Hand-painted artwork</strong> for the things worth remembering — special celebrations, favourite pieces, and ideas that deserve to exist on paper.</p>
+    </div>
+    <div class="comm-grid">
+      <div class="comm-card">
+        <div class="arch">
+          <Image src={oyster} alt="Hand-painted seafood menu card on a plate with a terracotta napkin" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
+        </div>
+        <p class="comm-label">Place setting menus <small>01</small></p>
+      </div>
+      <div class="comm-card">
+        <div class="arch">
+          <Image src={seating} alt="Hand-painted seating plan with floral border on an easel" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
+        </div>
+        <p class="comm-label">Illustrated table plans <small>02</small></p>
+      </div>
+      <div class="comm-card">
+        <div class="arch">
+          <Image src={cocktail} alt="Hand-painted signature cocktails sign by the sea" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
+        </div>
+        <p class="comm-label">Signage &amp; drinks menus <small>03</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section how on-dark" id="process">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Original artwork, <em>ready to print.</em></h2>
+    <p class="sub">From first sketch to print-ready files, your suite takes around 4–6 weeks.</p>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><span class="step-title">Inquire</span><p>Share your date, your colours, and anything that feels like you — a short call or a written brief, whichever works best.</p></div>
+      <div class="step"><span class="num">02</span><span class="step-title">Concept &amp; palette</span><p>I paint a small set of studies in your palette, so we can agree on the mood before a single word is set.</p></div>
+      <div class="step"><span class="num">03</span><span class="step-title">Hand-painted proof</span><p>Your suite is painted in full, photographed, and sent over as a digital proof for your first look.</p></div>
+      <div class="step"><span class="num">04</span><span class="step-title">Revisions</span><p>Two rounds are included — from wording and colour to composition — until everything feels just right.</p></div>
+      <div class="step"><span class="num">05</span><span class="step-title">Delivery</span><p>Your final print-ready files are sent along with a detailed printing guide, ready for your chosen printer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="wrap grid">
+    <div class="portrait" aria-hidden="true">
+      <svg viewBox="0 0 200 240">
+        <g stroke="#f8f2e7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 40 q10 -18 30 -14 q18 4 16 22 q14 4 10 20 q10 8 2 22 l-58 6 q-10 -20 0 -40 q-4 -10 0 -16z"/>
+          <path d="M60 90 l-15 70 h100 l-15 -70"/>
+          <rect x="20" y="150" width="60" height="70" rx="2"/>
+          <path d="M50 150 v-30 l40 -10"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">About</p>
+      <blockquote>"The best stationery doesn't just tell your guests where to be. It tells them something about you."</blockquote>
+      <div class="bio">
+        <p>I'm Chloe, an illustrator and designer creating custom invitation suites for celebrations worldwide. I blend hand-painted illustration with a modern, editorial eye to make pieces that feel original, rich, and deeply personal.</p>
+        <p>Working from my studio in Greece, my aesthetic is shaped by Mediterranean light, the seasons, and classical forms — bringing an effortless sense of luxury to every project.</p>
+        <p>Ready to create something memorable together?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORKS -->
+<section class="section works" id="works">
+  <div class="wrap">
+    <p class="eyebrow">Selected works</p>
+    <h2>A few favourite <em>suites</em></h2>
+    <div class="works-grid">
+      <div class="work-tile"><Image src={athens} alt="Blue hand-drawn Athens wedding suite with Acropolis and Greek gods" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={amalfi} alt="Hand-painted Amalfi Coast invitation with lemons and Positano" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={greek} alt="Hand-painted Greek wedding invitation with columns on a green and lilac check" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={pomegranate} alt="Pink menu card bordered with hand-painted pomegranates and pears" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={beach} alt="Hand-painted beach wedding seating plan with starfish and waves" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- GET IN TOUCH -->
+<section class="section contact on-dark" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Begin an inquiry</p>
+    <h2>Get in <em>touch</em></h2>
+    <div class="contact-grid">
+      <p class="contact-note"><strong>Let's make something yours.</strong>Tell me a little about your wedding, and I'll reply within a few days with availability and next steps.</p>
+      <div class="typeform-wrap">
+        {TYPEFORM_ID ? (
+          <>
+            <div data-tf-live={TYPEFORM_ID}></div>
+            <script is:inline src="//embed.typeform.com/next/embed.js"></script>
+          </>
+        ) : (
+          <p class="typeform-missing">The inquiry form isn't connected yet. Set <code>TYPEFORM_ID</code> in <code>src/config.ts</code>.</p>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+</Base>

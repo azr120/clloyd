@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description = '', image, type = 'website' } = Astro.props;
+const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image ? new URL(image, Astro.site) : undefined;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+{ogImage && <meta property="og:image" content={ogImage} />}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href={`${home}#top`}>Chloe Lloyd <span>Studio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span></label>
+    <ul class="nav-links">
+      <li><a href={`${home}#stationery`}>Stationery</a></li>
+      <li><a href={`${home}#commissions`}>Commissions</a></li>
+      <li><a href={`${home}#process`}>Process</a></li>
+      <li><a href={`${home}#about`}>About</a></li>
+      <li><a href={`${home}#works`}>Works</a></li>
+      <li><a href={`${home}blog/`}>Blog</a></li>
+      <li><a class="nav-cta" href={`${home}#contact`}>Get in touch</a></li>
+    </ul>
+  </div>
+</header>
+
+<slot />
+
+<footer>
+  <div class="wrap">
+    <span>© Chloe Lloyd Studio</span>
+    <div class="footer-right">
+      <a href={`${home}blog/`}>Blog</a>
+      <a href={`${home}#contact`}>Begin an inquiry</a>
+      <a href={`${home}privacy/`}>Privacy</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><circle cx="17" cy="7" r="1.1"/><path d="M16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm3.8 14.5a3.8 3.8 0 0 1-3.8 3.8h-9a3.8 3.8 0 0 1-3.8-3.8v-9a3.8 3.8 0 0 1 3.8-3.8h9a3.8 3.8 0 0 1 3.8 3.8z"/></svg>
+        </a>
+        <a href="https://www.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.64 19.31c-.09-.82-.17-2.08.04-2.98l1.2-5.1s-.3-.61-.3-1.51c0-1.41.82-2.47 1.84-2.47.87 0 1.29.65 1.29 1.43 0 .87-.55 2.18-.84 3.39-.24 1.01.51 1.84 1.5 1.84 1.8 0 3.19-1.9 3.19-4.64 0-2.43-1.75-4.12-4.24-4.12-2.89 0-4.58 2.16-4.58 4.4 0 .87.33 1.8.75 2.31a.3.3 0 0 1 .07.29l-.28 1.15c-.04.18-.15.22-.34.13-1.26-.59-2.05-2.43-2.05-3.91 0-3.18 2.31-6.1 6.67-6.1 3.5 0 6.22 2.5 6.22 5.83 0 3.48-2.19 6.28-5.24 6.28-1.02 0-1.98-.53-2.31-1.16l-.63 2.4c-.23.88-.84 1.98-1.25 2.65A10 10 0 1 0 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<CookieBanner />
+
+<script is:inline>
+  // close the mobile menu after choosing a link
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('nav-toggle').checked = false; });
+  });
+</script>
+
+</body>
+</html>
