@@ -142,15 +142,22 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
     <h2>Get in <em>touch</em></h2>
     <div class="contact-grid">
       <p class="contact-note"><strong>Let's make something yours.</strong>Tell me a little about your wedding, and I'll reply within a few days with availability and next steps.</p>
+      <div>
       <div class="typeform-wrap">
         {TYPEFORM_ID ? (
-          <>
-            <div data-tf-live={TYPEFORM_ID}></div>
-            <script is:inline src="//embed.typeform.com/next/embed.js"></script>
-          </>
+          <iframe
+            src={`https://form.typeform.com/to/${TYPEFORM_ID}?typeform-embed=embed-widget`}
+            title="Wedding stationery inquiry form"
+            loading="lazy"
+            allow="camera; microphone; autoplay; encrypted-media;"
+          ></iframe>
         ) : (
           <p class="typeform-missing">The inquiry form isn't connected yet. Set <code>TYPEFORM_ID</code> in <code>src/config.ts</code>.</p>
         )}
+      </div>
+      {TYPEFORM_ID && (
+        <p class="typeform-link">Form not loading? <a href={`https://form.typeform.com/to/${TYPEFORM_ID}`} target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      )}
       </div>
     </div>
   </div>

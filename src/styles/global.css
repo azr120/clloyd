@@ -184,7 +184,10 @@
   .contact-note strong{ display:block; font-family:var(--serif); font-weight:400; font-size:1.3rem; color:var(--paper); margin-bottom:0.8rem; }
   @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; gap:2.5rem; } }
   .typeform-wrap{ background:var(--paper); border-radius:6px; overflow:hidden; min-height:520px; }
-  .typeform-wrap > div{ min-height:520px; }
+  .typeform-wrap iframe{ display:block; width:100%; height:620px; border:0; }
+  @media (max-width:560px){ .typeform-wrap iframe{ height:680px; } }
+  .typeform-link{ margin-top:0.9rem; font-size:0.88rem; color:rgba(248,242,231,0.65); }
+  .typeform-link a{ color:var(--apricot); }
   .typeform-missing{ padding:2rem; color:var(--ink-soft); }
 
   /* ---------- FOOTER ---------- */
