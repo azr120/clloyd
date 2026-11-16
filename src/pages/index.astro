@@ -12,6 +12,12 @@ import seating from '../assets/images/seating-plan.jpeg';
 import mallorca from '../assets/images/mallorca-suite.jpeg';
 import oyster from '../assets/images/oyster-menu.jpeg';
 import pomegranate from '../assets/images/pomegranate-menu.jpeg';
+import coastal from '../assets/images/coastal-wedding.jpeg';
+import portrait from '../assets/images/chloe-portrait.jpg';
+
+// Drop a file named baptism.jpg/.jpeg/.png/.webp into src/assets/images/ and it appears automatically.
+const baptismFiles = import.meta.glob<ImageMetadata>('../assets/images/baptism*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+const baptism = Object.values(baptismFiles)[0];
 ---
 
 <Base title="Chloe Lloyd Studio — Wedding Stationery & Illustration" description="Hand-painted wedding stationery and illustration, made to feel like you. Custom invitation suites from a studio in Greece.">
@@ -20,10 +26,9 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
     <div class="hero-copy">
       <h1 class="reveal">Chloe Lloyd <em>Studio</em></h1>
       <p class="tagline reveal d2">Wedding stationery &amp; illustration</p>
-      <p class="intro reveal d2">Hand-painted invitation suites, made to feel like you — and nobody else.</p>
+      <p class="intro reveal d2">Hand-painted stationery and illustration for weddings and meaningful gatherings, made to feel like you — and nobody else.</p>
       <div class="hero-actions reveal d3">
         <a class="btn" href="#contact">Begin an inquiry</a>
-        <a class="btn ghost" href="#works">See the work</a>
       </div>
     </div>
     <div class="hero-visual reveal d2">
@@ -39,9 +44,22 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
       <p class="eyebrow">Wedding stationery</p>
       <h2>Because <em>your</em> wedding stationery should feel like you — not like everyone else's.</h2>
       <p class="body">Every commission begins with a brush, a blank page, and the things that make your story yours — a favourite flower, a special place, a memory. I turn those details into original artwork, then carry them across your entire suite.</p>
+      <p class="price-note">Prices starting from €200.</p>
     </div>
-    <div class="invite-stage">
-      <Image src={essex} alt="Hand-painted wedding suite with save the date, invitation and menu in pink and sage" widths={[480, 736]} sizes="(max-width: 860px) 90vw, 460px" />
+    <div class="invite-stage" aria-hidden="true">
+      <div class="invite-card">
+        <div class="ornament">
+          <svg width="44" height="44" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#c4572f" stroke-width="2"/><g stroke="#c4572f" stroke-width="1.2"><path d="M23 3 v40 M4 23 h38 M9 9 l28 28 M9 37 l28 -28"/></g></svg>
+          <svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 4 q16 6 16 22 q-16 6 -32 0 q0 -16 16 -22z" fill="none" stroke="#4f7f77" stroke-width="2"/></svg>
+        </div>
+        <p class="names">Sema &amp; Callum</p>
+        <p class="invite-line">invite you to celebrate their wedding on</p>
+        <p class="invite-details">Saturday, August 23, 2025 at 5:30 PM<br />Pousada Mosteiro do Crato<br />Largo do Terreiro, Portugal</p>
+        <div class="ornament bottom">
+          <svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 4 q16 6 16 22 q-16 6 -32 0 q0 -16 16 -22z" fill="none" stroke="#4f7f77" stroke-width="2"/></svg>
+          <svg width="44" height="44" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#c4572f" stroke-width="2"/><g stroke="#c4572f" stroke-width="1.2"><path d="M23 3 v40 M4 23 h38 M9 9 l28 28 M9 37 l28 -28"/></g></svg>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -52,28 +70,32 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
     <div class="head">
       <div>
         <p class="eyebrow">Commissions</p>
-        <h2>Painted for the things <em>worth remembering</em></h2>
+        <h2>Art for Life’s <em>Other Milestones</em></h2>
       </div>
-      <p class="lede"><strong>Hand-painted artwork</strong> for the things worth remembering — special celebrations, favourite pieces, and ideas that deserve to exist on paper.</p>
+      <p class="lede">From baptism suites and dinner party menus to custom venue portraits — hand-painted pieces created for the moments and places you never want to forget. <strong>Prices starting from €120.</strong></p>
     </div>
     <div class="comm-grid">
       <div class="comm-card">
         <div class="arch">
+          {baptism ? (
+            <Image src={baptism} alt="Hand-painted baptism stationery" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
+          ) : (
+            <div class="arch-placeholder">Baptism image coming soon</div>
+          )}
+        </div>
+        <p class="comm-label">Baptisms &amp; Milestones <small>01</small></p>
+      </div>
+      <div class="comm-card">
+        <div class="arch">
           <Image src={oyster} alt="Hand-painted seafood menu card on a plate with a terracotta napkin" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
         </div>
-        <p class="comm-label">Place setting menus <small>01</small></p>
+        <p class="comm-label">Celebrations &amp; Dinners <small>02</small></p>
       </div>
       <div class="comm-card">
         <div class="arch">
           <Image src={seating} alt="Hand-painted seating plan with floral border on an easel" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
         </div>
-        <p class="comm-label">Illustrated table plans <small>02</small></p>
-      </div>
-      <div class="comm-card">
-        <div class="arch">
-          <Image src={cocktail} alt="Hand-painted signature cocktails sign by the sea" widths={[480, 736]} sizes="(max-width: 860px) 380px, 33vw" />
-        </div>
-        <p class="comm-label">Signage &amp; drinks menus <small>03</small></p>
+        <p class="comm-label">Event Signage <small>03</small></p>
       </div>
     </div>
   </div>
@@ -86,7 +108,7 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
     <h2>Original artwork, <em>ready to print.</em></h2>
     <p class="sub">From first sketch to print-ready files, your suite takes around 4–6 weeks.</p>
     <div class="steps">
-      <div class="step"><span class="num">01</span><span class="step-title">Inquire</span><p>Share your date, your colours, and anything that feels like you — a short call or a written brief, whichever works best.</p></div>
+      <div class="step"><span class="num">01</span><span class="step-title">Inquire</span><p>Share your date, your colours and anything that feels like you via my contact form. I’ll follow up with a tailored quote and a link to book a quick chat to talk through your ideas.</p></div>
       <div class="step"><span class="num">02</span><span class="step-title">Concept &amp; palette</span><p>I paint a small set of studies in your palette, so we can agree on the mood before a single word is set.</p></div>
       <div class="step"><span class="num">03</span><span class="step-title">Hand-painted proof</span><p>Your suite is painted in full, photographed, and sent over as a digital proof for your first look.</p></div>
       <div class="step"><span class="num">04</span><span class="step-title">Revisions</span><p>Two rounds are included — from wording and colour to composition — until everything feels just right.</p></div>
@@ -95,18 +117,41 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
   </div>
 </section>
 
+<!-- FAQS -->
+<section class="section faqs" id="faqs">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">FAQs</p>
+        <h2>Good <em>to know</em></h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>What is the design timeline?</summary>
+          <p>The design and proofing process takes 4 to 6 weeks from initial concept to final file delivery. To allow your chosen printer enough time for production, assembly, and mailing, it is best to get in touch 3 to 4 months before your target mail-out date. Although, to ensure I am available to work on your stationery it is best to get in touch as soon as possible.</p>
+        </details>
+        <details>
+          <summary>How does printing work?</summary>
+          <p>You or your wedding planner handle physical production with the printer of your choice. Upon design approval, you will receive high-resolution, print-ready digital files, accompanied by a printing guide with my recommendations.</p>
+        </details>
+        <details>
+          <summary>Do you work with international clients?</summary>
+          <p>Yes, I design for couples and event planners worldwide. Because all final deliverables are provided digitally as print-ready files, there are no international shipping fees, physical transit delays, or customs holds on your design deliverables.</p>
+        </details>
+        <details>
+          <summary>Can we include custom artwork like crests or venue sketches?</summary>
+          <p>Every suite is created completely from scratch. You can include custom venue illustrations, monograms, family crests, or bespoke patterns tailored specifically to your event.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="section about" id="about">
   <div class="wrap grid">
-    <div class="portrait" aria-hidden="true">
-      <svg viewBox="0 0 200 240">
-        <g stroke="#f8f2e7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M70 40 q10 -18 30 -14 q18 4 16 22 q14 4 10 20 q10 8 2 22 l-58 6 q-10 -20 0 -40 q-4 -10 0 -16z"/>
-          <path d="M60 90 l-15 70 h100 l-15 -70"/>
-          <rect x="20" y="150" width="60" height="70" rx="2"/>
-          <path d="M50 150 v-30 l40 -10"/>
-        </g>
-      </svg>
+    <div class="portrait">
+      <Image src={portrait} alt="Portrait of Chloe Lloyd" widths={[420, 840]} sizes="(max-width: 860px) 320px, 420px" />
     </div>
     <div>
       <p class="eyebrow">About</p>
@@ -126,11 +171,14 @@ import pomegranate from '../assets/images/pomegranate-menu.jpeg';
     <p class="eyebrow">Selected works</p>
     <h2>A few favourite <em>suites</em></h2>
     <div class="works-grid">
+      <div class="work-tile wide"><Image src={coastal} alt="Coastal wedding stationery: welcome card, cocktail menu, seating plan, venue illustration and sailboat place card" widths={[736, 1024]} sizes="(max-width: 560px) 100vw, (max-width: 760px) 100vw, 66vw" /></div>
       <div class="work-tile"><Image src={athens} alt="Blue hand-drawn Athens wedding suite with Acropolis and Greek gods" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
       <div class="work-tile"><Image src={amalfi} alt="Hand-painted Amalfi Coast invitation with lemons and Positano" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
       <div class="work-tile"><Image src={greek} alt="Hand-painted Greek wedding invitation with columns on a green and lilac check" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
       <div class="work-tile"><Image src={pomegranate} alt="Pink menu card bordered with hand-painted pomegranates and pears" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
       <div class="work-tile"><Image src={beach} alt="Hand-painted beach wedding seating plan with starfish and waves" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={essex} alt="Hand-painted wedding suite with save the date, invitation and menu in pink and sage" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
+      <div class="work-tile"><Image src={cocktail} alt="Hand-painted signature cocktails sign by the sea" widths={[480, 736]} sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 380px" /></div>
     </div>
   </div>
 </section>

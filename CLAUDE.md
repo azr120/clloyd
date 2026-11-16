@@ -25,9 +25,14 @@ The root also holds two standalone prototypes that are *not* part of the build: 
 - Blog: content collection defined in `src/content.config.ts`; posts are Markdown in `src/content/blog/`. Frontmatter: `title`, `description`, `pubDate`, optional `cover` (relative image path), `coverAlt`, `draft` (true hides the post). In a post body, images are plain Markdown with a relative path, e.g. `![alt](../../assets/images/photo.jpeg)`. The post's filename becomes its URL.
 - Deployment: `.github/workflows/deploy.yml` builds on push to `main` and sets `SITE`/`BASE` from the repo owner/name (project site at `/REPO`). For a user site (`USER.github.io` repo) or custom domain, change `BASE` to `/`. In repo settings, Pages source must be "GitHub Actions". `astro.config.mjs` falls back to `https://example.github.io` locally.
 
+## Home page notes
+
+- The Commissions section's first card (Baptisms & Milestones) uses any file named `baptism.*` (jpg/jpeg/png/webp) in `src/assets/images/` via `import.meta.glob` in `index.astro`; until one exists it shows a "coming soon" placeholder.
+- FAQs are native `<details>` elements (no JS), with their own `#faqs` nav link.
+- The Wedding stationery section uses the illustrated "Sema & Callum" invitation card (inline SVG ornaments), not a photo.
+
 ## Still placeholders
 
-- Instagram/Pinterest footer links point to the generic `instagram.com` / `pinterest.com`.
-- `src/config.ts` holds `TYPEFORM_ID` and `GA_ID` (both set) and `CONTACT_EMAIL` (empty). The contact section embeds Typeform (`data-tf-live`) once `TYPEFORM_ID` is set; until then it shows a "not connected" note. GA4 and the cookie banner (`src/components/CookieBanner.astro`) are rendered only when `GA_ID` is set, and GA loads only after the visitor accepts. `src/pages/privacy.astro` is linked from the footer.
+- `src/config.ts` holds `TYPEFORM_ID` and `GA_ID` (both set) and `CONTACT_EMAIL` (empty). The contact section embeds Typeform as a plain `<iframe>` (the `embed.js` script approach didn't render) once `TYPEFORM_ID` is set; until then it shows a "not connected" note. GA4 and the cookie banner (`src/components/CookieBanner.astro`) are rendered only when `GA_ID` is set, and GA loads only after the visitor accepts. `src/pages/privacy.astro` is linked from the footer.
 - Custom domain `chloelloydstudio.com` (registered at Spaceship, DNS pointed at GitHub Pages) is set in `public/CNAME` and in the workflow (`SITE=https://chloelloydstudio.com`, `BASE=/`). Local builds fall back to `https://example.github.io`, so canonical URLs only look right in CI builds.
-- The About portrait is an SVG drawing, not a photo. Couple names/dates in the sample content are fake.
+- The two blog posts in `src/content/blog/` are sample content, and `CONTACT_EMAIL` is still empty.
