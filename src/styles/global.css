@@ -120,19 +120,8 @@
   .stationery h2{ font-size:clamp(2rem, 4vw, 3.1rem); max-width:16ch; }
   .stationery p.body{ margin-top:1.8rem; max-width:44ch; color:rgba(248,242,231,0.88); font-size:1.05rem; }
   .price-note{ margin-top:2rem; font-family:var(--serif); font-style:italic; font-weight:300; font-size:1.35rem; color:var(--apricot); }
-  .invite-stage{ background:var(--terracotta-deep); border-radius:999px 999px 6px 6px; padding:3.2rem 2.6rem 2.6rem; }
-  .invite-card{
-    background:var(--paper); color:var(--ink);
-    border-radius:4px; padding:2.4rem 1.8rem;
-    box-shadow:0 30px 60px -25px rgba(0,0,0,0.5);
-    transform:rotate(-1.5deg);
-    text-align:center;
-  }
-  .invite-card .names{ font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(1.8rem,3.4vw,2.5rem); color:var(--terracotta); line-height:1.15; }
-  .invite-card .invite-line{ font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft); margin-top:1.1rem; }
-  .invite-card .invite-details{ font-family:var(--serif); font-size:1rem; margin-top:1rem; line-height:1.5; }
-  .invite-card .ornament{ display:flex; justify-content:space-between; }
-  .invite-card .ornament.bottom{ margin-top:1.6rem; }
+  .invite-stage{ width:100%; border-radius:6px; overflow:hidden; box-shadow:0 30px 60px -25px rgba(0,0,0,0.5); }
+  .invite-stage img{ width:100%; height:auto; }
   @media (max-width:860px){ .stationery .grid{ grid-template-columns:1fr; gap:3rem; } }
 
   /* ---------- COMMISSIONS ---------- */

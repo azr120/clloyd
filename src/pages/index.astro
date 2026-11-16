@@ -13,7 +13,8 @@ import mallorca from '../assets/images/mallorca-suite.jpeg';
 import oyster from '../assets/images/oyster-menu.jpeg';
 import pomegranate from '../assets/images/pomegranate-menu.jpeg';
 import coastal from '../assets/images/coastal-wedding.jpeg';
-import portrait from '../assets/images/chloe-portrait.jpg';
+import semaCallum from '../assets/images/sema-callum-invitation.jpeg';
+import portrait from '../assets/images/chloe-portrait.png';
 
 // Drop a file named baptism.jpg/.jpeg/.png/.webp into src/assets/images/ and it appears automatically.
 const baptismFiles = import.meta.glob<ImageMetadata>('../assets/images/baptism*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
@@ -46,20 +47,8 @@ const baptism = Object.values(baptismFiles)[0];
       <p class="body">Every commission begins with a brush, a blank page, and the things that make your story yours — a favourite flower, a special place, a memory. I turn those details into original artwork, then carry them across your entire suite.</p>
       <p class="price-note">Prices starting from €200.</p>
     </div>
-    <div class="invite-stage" aria-hidden="true">
-      <div class="invite-card">
-        <div class="ornament">
-          <svg width="44" height="44" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#c4572f" stroke-width="2"/><g stroke="#c4572f" stroke-width="1.2"><path d="M23 3 v40 M4 23 h38 M9 9 l28 28 M9 37 l28 -28"/></g></svg>
-          <svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 4 q16 6 16 22 q-16 6 -32 0 q0 -16 16 -22z" fill="none" stroke="#4f7f77" stroke-width="2"/></svg>
-        </div>
-        <p class="names">Sema &amp; Callum</p>
-        <p class="invite-line">invite you to celebrate their wedding on</p>
-        <p class="invite-details">Saturday, August 23, 2025 at 5:30 PM<br />Pousada Mosteiro do Crato<br />Largo do Terreiro, Portugal</p>
-        <div class="ornament bottom">
-          <svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 4 q16 6 16 22 q-16 6 -32 0 q0 -16 16 -22z" fill="none" stroke="#4f7f77" stroke-width="2"/></svg>
-          <svg width="44" height="44" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#c4572f" stroke-width="2"/><g stroke="#c4572f" stroke-width="1.2"><path d="M23 3 v40 M4 23 h38 M9 9 l28 28 M9 37 l28 -28"/></g></svg>
-        </div>
-      </div>
+    <div class="invite-stage">
+      <Image src={semaCallum} alt="Hand-painted Sema & Callum wedding invitation with orange slices and blue florals, an envelope with a wax seal, and a details card" widths={[600, 1000, 1376]} sizes="(max-width: 860px) 100vw, 52vw" />
     </div>
   </div>
 </section>
